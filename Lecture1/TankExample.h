@@ -62,7 +62,7 @@ namespace jm
 			: Game2D("This is my digital canvas!", 1024, 768, false, 2)
 		{}
 
-		void draw() override
+		void update() override
 		{
 			drawLine(RGBColors::red, vec2(0.0f, 0.0f), RGBColors::blue, vec2(1.0f, 1.0f));
 

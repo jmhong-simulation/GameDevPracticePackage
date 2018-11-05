@@ -62,8 +62,7 @@ namespace jm
 
 	Game2D::~Game2D()
 	{
-		glfwDestroyWindow(glfw_window);
-		// 'delete glfw_window' doesn't work
+		glfwDestroyWindow(glfw_window); // cannot 'delete' glfw_window
 	}
 
 	void Game2D::reportErrorAndExit(const std::string & function_name, const std::string & message)
@@ -100,9 +99,13 @@ namespace jm
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glMatrixMode(GL_MODELVIEW);
 
-			draw();	// the major worker function
+			glPushMatrix();
 
-					// post draw
+			update();	// the major worker function
+
+			glPopMatrix();
+
+			// post draw
 			glfwSwapBuffers(glfw_window); // double buffering
 			glfwPollEvents();
 		}

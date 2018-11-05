@@ -39,6 +39,12 @@ namespace jm
 
 		void run();
 
-		virtual void draw() {}
+		virtual void update() 
+		{
+			// draw
+			// play sould
+			// physics update
+			// etc.
+		}
 	};
 }
