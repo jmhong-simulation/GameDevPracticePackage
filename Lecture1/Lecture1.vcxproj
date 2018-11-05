@@ -147,13 +147,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Canvas2D.cpp" />
+    <ClCompile Include="DrawFunctions.cpp" />
+    <ClCompile Include="Game2D.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Canvas2D.h" />
+    <ClInclude Include="DrawFunctions.h" />
+    <ClInclude Include="Game2D.h" />
     <ClInclude Include="RGB.h" />
     <ClInclude Include="RGBColors.h" />
+    <ClInclude Include="TankExample.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
   </ItemGroup>

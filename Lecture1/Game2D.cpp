@@ -1,8 +1,8 @@
-#include "Canvas2D.h"
+#include "Game2D.h"
 
 namespace jm
 {
-	Canvas2D::Canvas2D(const std::string & _title, const int & _width, const int & _height, const bool & use_full_screen, const int & display_ix)
+	Game2D::Game2D(const std::string & _title, const int & _width, const int & _height, const bool & use_full_screen, const int & display_ix)
 		: width(_width), height(_height)
 	{
 		if (!glfwInit()) reportErrorAndExit(__FUNCTION__, "glfw initialization");
@@ -59,19 +59,54 @@ namespace jm
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
-	
-	Canvas2D::~Canvas2D()
+
+	Game2D::~Game2D()
 	{
 		glfwDestroyWindow(glfw_window);
 		// 'delete glfw_window' doesn't work
 	}
-	
-	void Canvas2D::reportErrorAndExit(const std::string & function_name, const std::string & message)
+
+	void Game2D::reportErrorAndExit(const std::string & function_name, const std::string & message)
 	{
 		std::cout << "Error: " << function_name << " " << message << std::endl;
 
 		glfwTerminate();
 		getchar(); // pause to read error message
 		exit(1);
+	}
+
+	bool Game2D::isKeyPressed(const int & key)
+	{
+		return glfwGetKey(glfw_window, key) == GLFW_PRESS;
+	}
+
+	bool Game2D::isKeyReleased(const int & key)
+	{
+		return glfwGetKey(glfw_window, key) == GLFW_RELEASE;
+	}
+
+	void Game2D::run()
+	{
+		while (!glfwWindowShouldClose(glfw_window))// main loop
+		{
+			if (isKeyPressed(GLFW_KEY_ESCAPE)) {
+				std::cout << "ESC key ends main loop" << std::endl;
+				break;
+			}
+
+			// pre draw
+			glfwMakeContextCurrent(glfw_window);
+			glClearColor(1, 1, 1, 1);			 // while background
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			glMatrixMode(GL_MODELVIEW);
+
+			draw();	// the major worker function
+
+					// post draw
+			glfwSwapBuffers(glfw_window); // double buffering
+			glfwPollEvents();
+		}
+
+		glfwTerminate();
 	}
 }
