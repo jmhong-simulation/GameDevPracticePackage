@@ -154,9 +154,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrawFunctions.h" />
+    <ClInclude Include="FaceExample.h" />
     <ClInclude Include="Game2D.h" />
+    <ClInclude Include="PrimitivesGallery.h" />
     <ClInclude Include="RGB.h" />
-    <ClInclude Include="RGBColors.h" />
+    <ClInclude Include="Colors.h" />
     <ClInclude Include="TankExample.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vector2.h" />

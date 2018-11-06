@@ -14,11 +14,11 @@ namespace jm
 		{
 			beginTransformation();
 			translate(center.x, center.y);
-			drawFilledBox(RGBColors::green, 0.25f, 0.1f);
+			drawFilledBox(Colors::green, 0.25f, 0.1f);
 			translate(-0.02f, 0.1f);
-			drawFilledBox(RGBColors::blue, 0.15f, 0.09f);
+			drawFilledBox(Colors::blue, 0.15f, 0.09f);
 			translate(0.15f, 0.0f);
-			drawFilledBox(RGBColors::red, 0.15f, 0.03f);
+			drawFilledBox(Colors::red, 0.15f, 0.03f);
 			endTransformation();
 		}
 	};
@@ -33,8 +33,8 @@ namespace jm
 		{
 			beginTransformation();
 			translate(center.x, center.y);
-			drawFilledRegularConvexPolygon(RGBColors::yellow, 0.02f, 8);
-			drawWiredRegularConvexPolygon(RGBColors::gray, 0.02f, 8);
+			drawFilledRegularConvexPolygon(Colors::yellow, 0.02f, 8);
+			drawWiredRegularConvexPolygon(Colors::gray, 0.02f, 8);
 			endTransformation();
 		}
 

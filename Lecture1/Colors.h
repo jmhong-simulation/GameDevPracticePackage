@@ -4,7 +4,7 @@
 
 namespace jm
 {
-	namespace RGBColors
+	namespace Colors
 	{
 		// RGB color table http://www.rapidtables.com/web/color/RGB_Color.htm
 		const RGB red(255, 0, 0);

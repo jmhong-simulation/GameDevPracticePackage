@@ -1,4 +1,6 @@
 #include "DrawFunctions.h"
+#include <math.h>
+#include <vector>
 
 namespace jm
 {
@@ -55,12 +57,17 @@ namespace jm
 
 	void drawWiredTriangle(const RGB & color, const float & edge_length)
 	{
-		drawWiredRegularConvexPolygon(color, edge_length * 0.5f, 90.0f, 3);
+		drawWiredRegularConvexPolygon(color, edge_length * 0.5f * sqrtf(2.0f), 90.0f, 3);
 	}
 
 	void drawWiredSquare(const RGB & color, const float & edge_length)
 	{
 		drawWiredRegularConvexPolygon(color, edge_length * 0.5f, 45.0f, 4);
+	}
+
+	void drawFilledSquare(const RGB & color, const float & edge_length)
+	{
+		drawFilledRegularConvexPolygon(color, edge_length * 0.5f, 45.0f, 4);
 	}
 	
 	void drawFilledBox(const RGB & color, const float & width, const float & height)
@@ -89,7 +96,7 @@ namespace jm
 			float theta = getRadian(theta_start);
 			for (int i = 0; i < num_segments; ++i)
 			{
-				glVertex2f(radius * cos(theta), radius * sin(theta));
+				glVertex2f(radius * cosf(theta), radius * sinf(theta));
 
 				theta += d_theta;
 			}
@@ -105,7 +112,7 @@ namespace jm
 
 	void drawFilledTriangle(const RGB & color, const float & edge_length)
 	{
-		drawFilledRegularConvexPolygon(color, edge_length * 0.5f, 90.0f, 3);
+		drawFilledRegularConvexPolygon(color, edge_length * 0.5f * sqrtf(2.0f), 90.0f, 3);
 	}
 
 	void drawGrid(const RGB & color, const float & dx)
@@ -145,7 +152,7 @@ namespace jm
 			float theta = getRadian(start_theta);
 			for (int i = 0; i < num_segments; ++i)
 			{
-				glVertex2f(radius * cos(theta), radius * sin(theta));
+				glVertex2f(radius * cosf(theta), radius * sinf(theta));
 
 				theta += d_theta;
 			}

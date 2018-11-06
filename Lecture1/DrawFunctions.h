@@ -1,9 +1,15 @@
 #pragma once
 
-#include "Game2D.h"
+#include "RGB.h"
+#include "Vector2.h"
+#include "Vector3.h"
+#include <GL/glew.h>
 
 namespace jm
 {
+	using vec2 = Vector2<float>;
+	using vec3 = Vector3<float>;
+
 	float getRadian(const float& degree);
 
 	// Various primitives
@@ -20,6 +26,7 @@ namespace jm
 	void drawFilledRegularConvexPolygon(const RGB& color, const float& radius, const float & start_theta = 0.0f, const int& num_segments = 100);
 	void drawFilledCircle(const RGB& color, const float& radius);
 	void drawFilledTriangle(const RGB& color, const float& edge_length);
+	void drawFilledSquare(const RGB& color, const float& edge_length);
 	void drawFilledPentagon(const RGB& color, const float& radius);
 	void drawFilledStar(const RGB& color, const float& outer_radius, const float& inner_radius);
 	

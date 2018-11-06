@@ -9,8 +9,22 @@ namespace jm
 	Game2D::Game2D(const std::string & _title, const int & _width, const int & _height,
 				   const bool & use_full_screen, 
 				   const int & display_ix) // for multiple displays
-		: width(_width), height(_height)
 	{
+		init(_title, _width, _height, use_full_screen, display_ix);
+	}
+
+	Game2D::~Game2D()
+	{
+		glfwDestroyWindow(glfw_window); // cannot 'delete' glfw_window
+	}
+
+	Game2D & Game2D::init(const std::string & _title, const int & _width, const int & _height, const bool & use_full_screen, const int & display_ix)
+	{
+		if (glfw_window != nullptr){
+			std::cout << "Skip second initialization" << std::endl;
+			return *this;
+		}
+
 		if (!glfwInit()) reportErrorAndExit(__FUNCTION__, "glfw initialization");
 
 		const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
@@ -25,6 +39,9 @@ namespace jm
 			int display_w, display_h;
 			glfwMakeContextCurrent(glfw_window);
 			glfwGetFramebufferSize(glfw_window, &display_w, &display_h);
+
+			width = display_w;
+			height = display_h;
 
 			if (num_monitors == 3) // find center display
 				glfwSetWindowPos(glfw_window, (mode->width - display_w) / 2 - mode->width, (mode->height - display_h) / 2);
@@ -63,12 +80,9 @@ namespace jm
 		glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
 		glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
 		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);		
-	}
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	Game2D::~Game2D()
-	{
-		glfwDestroyWindow(glfw_window); // cannot 'delete' glfw_window
+		return *this; // chaining
 	}
 
 	void Game2D::reportErrorAndExit(const std::string & function_name, const std::string & message)
@@ -127,6 +141,9 @@ namespace jm
 
 	void Game2D::run()
 	{
+		if (glfw_window == nullptr)
+			init("This is my digital canvas!", 1280, 960, false); // initialize with default setting
+
 		while (!glfwWindowShouldClose(glfw_window))// main loop
 		{
 			if (isKeyPressed(GLFW_KEY_ESCAPE)) {
@@ -155,19 +172,19 @@ namespace jm
 			//glfwSetInputMode(glfw_window, GLFW_STICKY_KEYS, GLFW_FALSE); // not working 
 			glfwPollEvents();
 
-			const double dt = timer.stopAndGetElapsedMilli();
+			//const double dt = timer.stopAndGetElapsedMilli();
 
 			//Debugging
 			//std::cout << dt << std::endl;
 
-			if (dt < spf) // to prevent too high fps
-			{
-				const auto time_to_sleep = static_cast<int>((spf - dt) * 1000.0f);
-				std::this_thread::sleep_for(std::chrono::milliseconds(time_to_sleep));
-				
-				//Debugging
-				//std::cout << "sleep " << time_to_sleep << std::endl;
-			}
+			//if (dt < spf) // to prevent too high fps
+			//{
+			//	const auto time_to_sleep = static_cast<int>((spf - dt) * 1000.0f);
+			//	std::this_thread::sleep_for(std::chrono::milliseconds(time_to_sleep));
+			//	
+			//	//Debugging
+			//	//std::cout << "sleep " << time_to_sleep << std::endl;
+			//}
 		}
 
 		glfwTerminate();
@@ -184,7 +201,7 @@ namespace jm
 
 		if (draw_grid) {
 			setLineWidth(1);
-			jm::drawGrid(RGBColors::gray, 0.5f); //Note: Game2D::drawGrid() vs jm::drawGrid(...)
+			jm::drawGrid(Colors::gray, 0.5f); //Note: Game2D::drawGrid() vs jm::drawGrid(...)
 		}
 	}
 }

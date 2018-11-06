@@ -3,8 +3,9 @@
 #include "RGB.h"
 #include "Vector2.h"
 #include "Vector3.h"
-#include "RGBColors.h"
+#include "Colors.h"
 #include "Timer.h"
+#include "DrawFunctions.h"
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -36,10 +37,16 @@ namespace jm
 		bool draw_grid = false;
 
 	public:
+		Game2D()
+		{}
+
 		Game2D(const std::string& _title, const int& _width, const int& _height,
 			const bool & use_full_screen = false, const int & display_ix = 0);
 
 		~Game2D();
+
+		Game2D & init(const std::string& _title, const int& _width, const int& _height,
+			const bool & use_full_screen = false, const int & display_ix = 0);
 
 		void reportErrorAndExit(const std::string& function_name, const std::string& message);
 
