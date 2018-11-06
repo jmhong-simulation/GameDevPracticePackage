@@ -18,7 +18,7 @@ namespace jm
 		glfwDestroyWindow(glfw_window); // cannot 'delete' glfw_window
 	}
 
-	Game2D & Game2D::init(const std::string & _title, const int & _width, const int & _height, const bool & use_full_screen, const int & display_ix)
+	Game2D& Game2D::init(const std::string & _title, const int & _width, const int & _height, const bool & use_full_screen, const int & display_ix)
 	{
 		if (glfw_window != nullptr){
 			std::cout << "Skip second initialization" << std::endl;

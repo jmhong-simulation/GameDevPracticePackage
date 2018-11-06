@@ -62,5 +62,8 @@
     <ClInclude Include="TankExample.h">
       <Filter>Examples</Filter>
     </ClInclude>
+    <ClInclude Include="WalkingPerson.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
