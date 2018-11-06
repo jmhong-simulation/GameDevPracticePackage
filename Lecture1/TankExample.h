@@ -18,7 +18,7 @@ namespace jm
 			translate(-0.02f, 0.1f);
 			drawFilledBox(Colors::blue, 0.15f, 0.09f);
 			translate(0.15f, 0.0f);
-			drawFilledBox(Colors::red, 0.15f, 0.03f);
+			drawFilledBox(Colors::red, 0.15f, 0.03f); // turret
 			endTransformation();
 		}
 	};

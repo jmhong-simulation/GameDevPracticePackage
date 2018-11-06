@@ -159,6 +159,7 @@
     <ClInclude Include="PrimitivesGallery.h" />
     <ClInclude Include="RGB.h" />
     <ClInclude Include="Colors.h" />
+    <ClInclude Include="SolarSystem.h" />
     <ClInclude Include="TankExample.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vector2.h" />
