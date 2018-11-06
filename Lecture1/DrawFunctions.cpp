@@ -43,6 +43,25 @@ namespace jm
 	{
 		glScalef(scale_x, scale_y, 1.0);
 	}
+
+	void drawPoint(const RGB & color, const vec2 & position, const float & size)
+	{
+		glColor3fv(color.data);
+		glPointSize(size);
+		glBegin(GL_POINTS);
+		glVertex2fv(position.data);
+		glEnd();
+	}
+
+	void drawWiredTriangle(const RGB & color, const float & edge_length)
+	{
+		drawWiredRegularConvexPolygon(color, edge_length * 0.5f, 90.0f, 3);
+	}
+
+	void drawWiredSquare(const RGB & color, const float & edge_length)
+	{
+		drawWiredRegularConvexPolygon(color, edge_length * 0.5f, 45.0f, 4);
+	}
 	
 	void drawFilledBox(const RGB & color, const float & width, const float & height)
 	{
@@ -59,7 +78,7 @@ namespace jm
 		glEnd();
 	}
 
-	void drawFilledCircle(const RGB & color, const float & radius, const int & num_segments)
+	void drawFilledRegularConvexPolygon(const RGB & color, const float & radius, const float & theta_start, const int & num_segments)
 	{
 		const float d_theta = 3.141592f * 2.0f / static_cast<float>(num_segments);
 
@@ -67,22 +86,55 @@ namespace jm
 
 		glBegin(GL_TRIANGLE_FAN);
 		{
-			glVertex2f(0.0f, 0.0f);
-
-			float theta = 0;
+			float theta = getRadian(theta_start);
 			for (int i = 0; i < num_segments; ++i)
 			{
 				glVertex2f(radius * cos(theta), radius * sin(theta));
 
 				theta += d_theta;
 			}
-			glVertex2f(radius, 0.0f);
-
 		}
 		glEnd();
 	}
 
-	void drawCircle(const RGB & color, const float & radius, const int & num_segments)
+	void drawFilledCircle(const RGB & color, const float & radius)
+	{
+		drawFilledRegularConvexPolygon(color, radius - 1e-4f, 0.0f, 30);
+		drawWiredRegularConvexPolygon(color, radius, 0.0f, 30); // draw smooth boundary
+	}
+
+	void drawFilledTriangle(const RGB & color, const float & edge_length)
+	{
+		drawFilledRegularConvexPolygon(color, edge_length * 0.5f, 90.0f, 3);
+	}
+
+	void drawGrid(const RGB & color, const float & dx)
+	{
+		const float maxl = 2.0f;
+		const float dy = dx;
+
+		// vertical
+		for (float x = 0.0f; x < maxl; x += dx)
+			drawLine(color, vec2(x, -maxl), color, vec2(x, +maxl));
+
+		for (float x = -dx; x > -maxl; x -= dx)
+			drawLine(color, vec2(x, -maxl), color, vec2(x, +maxl));
+
+		// horizontal
+		for (float y = 0.0f; y < maxl; y += dy)
+			drawLine(color, vec2(-maxl, y), color, vec2(maxl, y));
+
+		for (float y = -dy; y > -maxl; y -= dy)
+			drawLine(color, vec2(-maxl, y), color, vec2(maxl, y));
+
+	}
+
+	void setLineWidth(const int & width)
+	{
+		glLineWidth(static_cast<float>(width));
+	}
+
+	void drawWiredRegularConvexPolygon(const RGB & color, const float & radius, const float & start_theta, const int & num_segments)
 	{
 		const float d_theta = 3.141592f * 2.0f / (float)num_segments;
 
@@ -90,7 +142,7 @@ namespace jm
 
 		glBegin(GL_LINE_LOOP);
 		{
-			float theta = 0;
+			float theta = getRadian(start_theta);
 			for (int i = 0; i < num_segments; ++i)
 			{
 				glVertex2f(radius * cos(theta), radius * sin(theta));
@@ -99,5 +151,21 @@ namespace jm
 			}
 		}
 		glEnd();
+	}
+
+	void drawWiredCircle(const RGB & color, const float & radius)
+	{
+		drawWiredRegularConvexPolygon(color, radius, 0.0f, 30);
+	}
+
+	void drawWiredPentagon(const RGB & color, const float & radius)
+	{
+		drawWiredRegularConvexPolygon(color, radius, 90.0f, 5);
+	}
+
+	void drawFilledPentagon(const RGB & color, const float & radius)
+	{
+		drawFilledRegularConvexPolygon(color, radius, 90.0f, 5);
+		drawWiredPentagon(color, radius);// draw smooth boundary
 	}
 }

@@ -6,16 +6,31 @@ namespace jm
 {
 	float getRadian(const float& degree);
 
+	// Various primitives
+	void drawPoint(const RGB& color, const vec2& position, const float & size); // use drawFilledCircle instead
 	void drawLine(const RGB& color0, const vec2& position0, const vec3& color1, const vec2& position1);
 
+	void drawWiredTriangle(const RGB& color, const float& edge_length);
+	void drawWiredSquare(const RGB& color, const float& edge_length);
+	void drawWiredRegularConvexPolygon(const RGB& color, const float& radius, const float & start_theta = 0.0f, const int& num_segments = 100);
+	void drawWiredCircle(const RGB& color, const float& radius);
+	void drawWiredPentagon(const RGB& color, const float& radius);
+
+	void drawFilledBox(const RGB& color, const float& width, const float& height);
+	void drawFilledRegularConvexPolygon(const RGB& color, const float& radius, const float & start_theta = 0.0f, const int& num_segments = 100);
+	void drawFilledCircle(const RGB& color, const float& radius);
+	void drawFilledTriangle(const RGB& color, const float& edge_length);
+	void drawFilledPentagon(const RGB& color, const float& radius);
+	
+	void drawGrid(const RGB& color, const float& dx);
+
+	// Affine transformations
 	void beginTransformation();
 	void endTransformation();
-	
 	void translate(const float& pos_x, const float& pos_y);
 	void rotate(const float& degree);
 	void scale(const float& scale_x, const float& scale_y);
 
-	void drawCircle(const RGB& color, const float& radius, const int& num_segments = 100);
-	void drawFilledBox(const RGB& color, const float& width, const float& height);
-	void drawFilledCircle(const RGB& color, const float& radius, const int& num_segments = 100);
+	// Other options
+	void setLineWidth(const int & width);
 }

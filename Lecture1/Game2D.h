@@ -1,17 +1,18 @@
 #pragma once
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include <thread>         // std::this_thread::sleep_for
-#include <chrono>         // std::chrono::seconds
-#include <iostream>
-#include <vector>
-#include <string>
-
 #include "RGB.h"
 #include "Vector2.h"
 #include "Vector3.h"
 #include "RGBColors.h"
+#include "Timer.h"
+
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+#include <thread>         // std::this_thread::sleep_for
+#include <iostream>
+#include <vector>
+#include <string>
+#include <map>
 
 namespace jm
 {
@@ -26,6 +27,14 @@ namespace jm
 
 		GLFWwindow* glfw_window = nullptr;
 
+		Timer timer;
+
+		float spf = 1.0f / 60.0f;		// second(s) per frame
+
+		// control options
+		std::map<int, bool> key_status; // key_id, is_pressed
+		bool draw_grid = false;
+
 	public:
 		Game2D(const std::string& _title, const int& _width, const int& _height,
 			const bool & use_full_screen = false, const int & display_ix = 0);
@@ -36,6 +45,11 @@ namespace jm
 
 		bool isKeyPressed(const int& key);
 		bool isKeyReleased(const int & key);
+		bool isKeyPressedAndReleased(const int& key);
+
+		float getTimeStep();
+
+		void drawGrid();
 
 		void run();
 

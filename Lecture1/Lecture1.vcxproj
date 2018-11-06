@@ -150,6 +150,7 @@
     <ClCompile Include="DrawFunctions.cpp" />
     <ClCompile Include="Game2D.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrawFunctions.h" />
@@ -157,6 +158,7 @@
     <ClInclude Include="RGB.h" />
     <ClInclude Include="RGBColors.h" />
     <ClInclude Include="TankExample.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
   </ItemGroup>

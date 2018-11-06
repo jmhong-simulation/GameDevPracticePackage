@@ -33,7 +33,8 @@ namespace jm
 		{
 			beginTransformation();
 			translate(center.x, center.y);
-			drawFilledCircle(RGBColors::yellow, 0.02f, 8);
+			drawFilledRegularConvexPolygon(RGBColors::yellow, 0.02f, 8);
+			drawWiredRegularConvexPolygon(RGBColors::gray, 0.02f, 8);
 			endTransformation();
 		}
 
@@ -55,8 +56,6 @@ namespace jm
 		//TODO: allow multiple bullets
 		//TODO: delete bullets when they go out of the screen
 
-		bool space_key_pressed = false;
-
 	public:
 		TankExample()
 			: Game2D("This is my digital canvas!", 1024, 768, false, 2)
@@ -64,8 +63,6 @@ namespace jm
 
 		void update() override
 		{
-			drawLine(RGBColors::red, vec2(0.0f, 0.0f), RGBColors::blue, vec2(1.0f, 1.0f));
-
 			// move tank
 			if (isKeyPressed(GLFW_KEY_LEFT))	tank.center.x -= 0.01f;
 			if (isKeyPressed(GLFW_KEY_RIGHT))	tank.center.x += 0.01f;
@@ -73,9 +70,7 @@ namespace jm
 			if (isKeyPressed(GLFW_KEY_DOWN))	tank.center.y -= 0.01f;
 
 			// shoot a cannon ball
-			if (isKeyPressed(GLFW_KEY_SPACE))	space_key_pressed = true;
-
-			if (space_key_pressed && isKeyReleased(GLFW_KEY_SPACE))
+			if (isKeyPressedAndReleased(GLFW_KEY_SPACE))
 			{
 				if (bullet != nullptr) delete bullet;
 				bullet = new MyBullet;
@@ -83,8 +78,6 @@ namespace jm
 				bullet->center.x += 0.2f;
 				bullet->center.y += 0.1f;
 				bullet->velocity = vec3(2.0f, 0.0f, 0.0f);
-
-				space_key_pressed = false;
 			}
 
 			if (bullet != nullptr) bullet->update(1 / 60.0f);

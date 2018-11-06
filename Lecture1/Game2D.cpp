@@ -1,8 +1,14 @@
 #include "Game2D.h"
+#include "DrawFunctions.h"
+
+#include <iostream>
+#include <iomanip>
 
 namespace jm
 {
-	Game2D::Game2D(const std::string & _title, const int & _width, const int & _height, const bool & use_full_screen, const int & display_ix)
+	Game2D::Game2D(const std::string & _title, const int & _width, const int & _height,
+				   const bool & use_full_screen, 
+				   const int & display_ix) // for multiple displays
 		: width(_width), height(_height)
 	{
 		if (!glfwInit()) reportErrorAndExit(__FUNCTION__, "glfw initialization");
@@ -57,7 +63,7 @@ namespace jm
 		glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
 		glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
 		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);		
 	}
 
 	Game2D::~Game2D()
@@ -76,12 +82,47 @@ namespace jm
 
 	bool Game2D::isKeyPressed(const int & key)
 	{
-		return glfwGetKey(glfw_window, key) == GLFW_PRESS;
+		if (key_status.count(key) <= 0) key_status[key] = false;
+
+		if (glfwGetKey(glfw_window, key) == GLFW_PRESS)
+			key_status[key] = true;
+		else
+			key_status[key] = false;
+
+		return key_status[key];
 	}
 
 	bool Game2D::isKeyReleased(const int & key)
 	{
-		return glfwGetKey(glfw_window, key) == GLFW_RELEASE;
+		if (key_status.count(key) <= 0) key_status[key] = false;
+
+		if (glfwGetKey(glfw_window, key) == GLFW_RELEASE)
+			key_status[key] = false;
+		else
+			key_status[key] = true;
+
+		return key_status[key];
+	}
+
+	bool Game2D::isKeyPressedAndReleased(const int & key)
+	{
+		if (key_status.count(key) <= 0) key_status[key] = false; // register key to map
+
+		if (glfwGetKey(glfw_window, key) == GLFW_RELEASE)
+		{
+			if (key_status[key] == true) {
+				key_status[key] = false;
+				return true;
+			}
+			else {
+				key_status[key] = false;
+				return false;
+			}
+		}
+		else {
+			key_status[key] = true;
+			return false;
+		}
 	}
 
 	void Game2D::run()
@@ -93,6 +134,8 @@ namespace jm
 				break;
 			}
 
+			timer.start();
+
 			// pre draw
 			glfwMakeContextCurrent(glfw_window);
 			glClearColor(1, 1, 1, 1);			 // while background
@@ -101,15 +144,47 @@ namespace jm
 
 			glPushMatrix();
 
+			drawGrid();
+
 			update();	// the major worker function
 
 			glPopMatrix();
 
 			// post draw
 			glfwSwapBuffers(glfw_window); // double buffering
+			//glfwSetInputMode(glfw_window, GLFW_STICKY_KEYS, GLFW_FALSE); // not working 
 			glfwPollEvents();
+
+			const double dt = timer.stopAndGetElapsedMilli();
+
+			//Debugging
+			//std::cout << dt << std::endl;
+
+			if (dt < spf) // to prevent too high fps
+			{
+				const auto time_to_sleep = static_cast<int>((spf - dt) * 1000.0f);
+				std::this_thread::sleep_for(std::chrono::milliseconds(time_to_sleep));
+				
+				//Debugging
+				//std::cout << "sleep " << time_to_sleep << std::endl;
+			}
 		}
 
 		glfwTerminate();
+	}
+	
+	float Game2D::getTimeStep()
+	{
+		return spf;
+	}
+	
+	void Game2D::drawGrid()
+	{
+		if (isKeyPressedAndReleased(GLFW_KEY_G)) draw_grid = !draw_grid;
+
+		if (draw_grid) {
+			setLineWidth(1);
+			jm::drawGrid(RGBColors::gray, 0.5f); //Note: Game2D::drawGrid() vs jm::drawGrid(...)
+		}
 	}
 }
