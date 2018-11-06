@@ -21,6 +21,7 @@ namespace jm
 	void drawFilledCircle(const RGB& color, const float& radius);
 	void drawFilledTriangle(const RGB& color, const float& edge_length);
 	void drawFilledPentagon(const RGB& color, const float& radius);
+	void drawFilledStar(const RGB& color, const float& outer_radius, const float& inner_radius);
 	
 	void drawGrid(const RGB& color, const float& dx);
 

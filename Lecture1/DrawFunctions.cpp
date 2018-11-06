@@ -168,4 +168,47 @@ namespace jm
 		drawFilledRegularConvexPolygon(color, radius, 90.0f, 5);
 		drawWiredPentagon(color, radius);// draw smooth boundary
 	}
+
+	std::vector<vec2> makeRegularConvexPolygon(const float & radius, const float & theta_start, const int & num_segments)
+	{
+		std::vector<vec2> vertices;
+		vertices.resize(num_segments);
+
+		const float d_theta = 3.141592f * 2.0f / static_cast<float>(num_segments);
+
+		float theta = getRadian(theta_start);
+		for (int i = 0; i < num_segments; ++i)
+		{
+			vertices[i] = vec2{ radius * cos(theta), radius * sin(theta) };
+			theta += d_theta;
+		}
+
+		return vertices;
+	}
+
+	void drawFilledStar(const RGB & color, const float & outer_radius, const float & inner_radius)
+	{
+		const int num_segments = 5;
+
+		//Note: not optimized
+		const auto outer_vertices = makeRegularConvexPolygon(outer_radius, 90.0f, num_segments);
+		const auto inner_vertices = makeRegularConvexPolygon(inner_radius, 90.0f - 360.0f * 0.5f / num_segments, num_segments);
+
+		glColor3fv(&color[0]);
+		
+		glBegin(GL_TRIANGLES);
+
+		for (int i = 0; i < num_segments; ++i)
+		{
+			glVertex2fv(outer_vertices[i].data);
+			glVertex2fv(inner_vertices[i].data);
+			glVertex2fv(inner_vertices[(i+1)%5].data);
+
+			glVertex2f(0.0f, 0.0f);
+			glVertex2fv(inner_vertices[i].data);
+			glVertex2fv(inner_vertices[(i + 1) % 5].data);
+		}
+
+		glEnd();
+	}
 }
