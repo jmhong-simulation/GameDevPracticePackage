@@ -16,6 +16,7 @@ namespace jm
 	void drawPoint(const RGB& color, const vec2& position, const float & size); // use drawFilledCircle instead
 	void drawLine(const RGB& color0, const vec2& position0, const vec3& color1, const vec2& position1);
 
+	void drawWiredBox(const RGB& color, const float& width, const float& height);
 	void drawWiredTriangle(const RGB& color, const float& edge_length);
 	void drawWiredSquare(const RGB& color, const float& edge_length);
 	void drawWiredRegularConvexPolygon(const RGB& color, const float& radius, const float & start_theta = 0.0f, const int& num_segments = 100);

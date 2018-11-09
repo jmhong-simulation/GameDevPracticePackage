@@ -85,6 +85,21 @@ namespace jm
 		glEnd();
 	}
 
+	void drawWiredBox(const RGB & color, const float & width, const float & height)
+	{
+		const vec2 left_bottom(-0.5f * width, -0.5f * height);
+
+		glColor3fv(&color[0]);
+		glBegin(GL_LINE_LOOP);
+		{
+			glVertex2f(left_bottom.x, left_bottom.y);
+			glVertex2f(left_bottom.x + width, left_bottom.y);
+			glVertex2f(left_bottom.x + width, left_bottom.y + height);
+			glVertex2f(left_bottom.x, left_bottom.y + height);
+		}
+		glEnd();
+	}
+
 	void drawFilledRegularConvexPolygon(const RGB & color, const float & radius, const float & theta_start, const int & num_segments)
 	{
 		const float d_theta = 3.141592f * 2.0f / static_cast<float>(num_segments);
