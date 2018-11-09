@@ -66,11 +66,16 @@ namespace jm
 		{
 			return Vector2<T>(x * a, y * a);
 		}
-
+			   
 		Vector2<T> operator / (const T& a) const
 		{
 			const T one_over_a = T(1) / a;
 			return Vector2<T>(x * one_over_a, y * one_over_a);
+		}
+
+		Vector2<T> operator - () const
+		{
+			return Vector2<T>(-x, -y);
 		}
 
 		float & operator [] (const int & ix)

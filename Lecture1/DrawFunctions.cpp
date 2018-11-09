@@ -36,6 +36,11 @@ namespace jm
 		glTranslatef(pos_x, pos_y, 0.0);
 	}
 
+	void translate(const vec2 & dx)
+	{
+		glTranslatef(dx.x, dx.y, 0.0);
+	}
+
 	void rotate(const float & degree)
 	{
 		glRotatef(degree, 0.0, 0.0, 1.0);

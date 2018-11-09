@@ -36,6 +36,7 @@ namespace jm
 	// Affine transformations
 	void beginTransformation();
 	void endTransformation();
+	void translate(const vec2& dx);
 	void translate(const float& pos_x, const float& pos_y);
 	void rotate(const float& degree);
 	void scale(const float& scale_x, const float& scale_y);
