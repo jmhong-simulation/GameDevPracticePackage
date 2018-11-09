@@ -62,7 +62,7 @@ namespace jm
 
 	void drawWiredSquare(const RGB & color, const float & edge_length)
 	{
-		drawWiredRegularConvexPolygon(color, edge_length * 0.5f, 45.0f, 4);
+		drawWiredRegularConvexPolygon(color, edge_length * 0.5f * sqrtf(2.0f), 45.0f, 4);
 	}
 
 	void drawFilledSquare(const RGB & color, const float & edge_length)
