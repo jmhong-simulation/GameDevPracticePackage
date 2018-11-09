@@ -24,4 +24,6 @@
 
 홍정모 드림.
 
+홍보 영상 링크 https://www.youtube.com/watch?v=v-yZZfLNnLE
+
 
