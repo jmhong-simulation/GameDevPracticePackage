@@ -13,13 +13,11 @@ namespace jm
 		{
 			beginTransformation();
 			{
-				rotate(time * 90.0f);
 				drawFilledStar(Colors::gold, 0.2f, 0.13f);	// Sun
 
 				translate(0.5f, 0.0f);
 				drawFilledCircle(Colors::blue, 0.1f);		// Earth
 
-				rotate(time * 360.0f);
 				translate(0.2f, 0.0f);
 				drawFilledCircle(Colors::yellow, 0.05f);	// Moon
 			}
