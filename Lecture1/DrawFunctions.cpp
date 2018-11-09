@@ -67,7 +67,7 @@ namespace jm
 
 	void drawFilledSquare(const RGB & color, const float & edge_length)
 	{
-		drawFilledRegularConvexPolygon(color, edge_length * 0.5f, 45.0f, 4);
+		drawFilledRegularConvexPolygon(color, edge_length * 0.5f * sqrtf(2.f), 45.0f, 4);
 	}
 	
 	void drawFilledBox(const RGB & color, const float & width, const float & height)
