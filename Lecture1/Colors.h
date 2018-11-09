@@ -10,6 +10,7 @@ namespace jm
 		const RGB red(255, 0, 0);
 		const RGB green(0, 255, 0);
 		const RGB blue(0, 0, 255);
+		const RGB skyblue(178, 255, 255);
 		const RGB gray(128, 128, 128);
 		const RGB yellow(255, 255, 0);
 		const RGB olive(128, 128, 0);
