@@ -20,7 +20,7 @@ namespace jm
 				drawWiredTriangle(Colors::red, 0.25f);
 
 				translate(0.5f, 0.0f);
-				drawFilledTriangle(Colors::gray, 0.25f);
+				drawFilledTriangle(Colors::blue, 0.25f);
 
 				translate(0.5f, 0.0f);
 				drawWiredSquare(Colors::blue, 0.3f);
