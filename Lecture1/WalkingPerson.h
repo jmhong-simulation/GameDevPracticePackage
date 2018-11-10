@@ -4,6 +4,12 @@
 
 namespace jm
 {
+	/*
+	TODO:
+	- make a Person class and use it to draw many people.
+	- make an Ironman and allow for him to shoot repulsor beam with his right hand
+	*/
+
 	class WalkingPerson : public Game2D
 	{
 		float time = 0.0f;
