@@ -21,17 +21,17 @@ namespace jm
 			// red face
 			beginTransformation();
 			translate(0.0f, 0.12f);
-			drawFilledCircle(Colors::red, 0.08f);
+			drawFilledCircle(Colors::gold, 0.08f);
 			translate(0.05f, 0.03f);
-			drawFilledCircle(Colors::white, 0.01f);
+			drawFilledCircle(Colors::white, 0.01f); // while eye
 
 			endTransformation();
 
-			// blue body
+			// red body
 			beginTransformation();
 			scale(1.0f, 2.0f);
 			translate(0.0f, -0.1f);
-			drawFilledBox(Colors::blue, 0.13f, 0.2f);
+			drawFilledBox(Colors::red, 0.13f, 0.2f);
 			endTransformation();
 
 			// yellow arm
