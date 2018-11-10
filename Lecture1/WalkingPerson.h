@@ -18,7 +18,7 @@ namespace jm
 	public:
 		void update() override
 		{
-			// red face
+			// gold face
 			beginTransformation();
 			translate(0.0f, 0.12f);
 			drawFilledCircle(Colors::gold, 0.08f);
