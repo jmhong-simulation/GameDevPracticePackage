@@ -15,7 +15,7 @@ namespace jm
 		const RGB yellow(255, 255, 0);
 		const RGB olive(128, 128, 0);
 		const RGB black(0, 0, 0);
-		const RGB white(1, 1, 1);
+		const RGB white(255, 255, 255);
 		const RGB gold(255, 223, 0);
 		const RGB silver(192, 192, 192);
 	}

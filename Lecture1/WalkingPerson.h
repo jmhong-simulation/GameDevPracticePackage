@@ -6,6 +6,7 @@ namespace jm
 {
 	/*
 	TODO:
+	- add left arm and left leg
 	- make a Person class and use it to draw many people.
 	- make an Ironman and allow for him to shoot repulsor beam with his right hand
 	*/
@@ -21,6 +22,9 @@ namespace jm
 			beginTransformation();
 			translate(0.0f, 0.12f);
 			drawFilledCircle(Colors::red, 0.08f);
+			translate(0.05f, 0.03f);
+			drawFilledCircle(Colors::white, 0.01f);
+
 			endTransformation();
 
 			// blue body
