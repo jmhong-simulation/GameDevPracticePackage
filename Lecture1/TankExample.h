@@ -42,7 +42,6 @@ namespace jm
 		{
 			center += velocity * dt;
 		}
-
 	};
 
 	class TankExample : public Game2D
@@ -86,9 +85,7 @@ namespace jm
 			tank.draw();
 			if (bullet != nullptr) bullet->draw();
 
-			time += 1 / 60.0f;
-
-			// sleep 
+			time += getTimeStep();
 		}
 	};
 }
