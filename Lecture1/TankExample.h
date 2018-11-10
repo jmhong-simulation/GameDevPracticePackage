@@ -63,7 +63,7 @@ namespace jm
 		void update() override
 		{
 			// move tank
-			if (isKeyPressed(GLFW_KEY_LEFT))	tank.center.x -= 0.01f;
+			if (isKeyPressed(GLFW_KEY_LEFT))	tank.center.x -= 0.5f * getTimeStep();
 			//TODO: other directions
 
 			// shoot a cannon ball
