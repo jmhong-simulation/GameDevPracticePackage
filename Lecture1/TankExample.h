@@ -13,12 +13,14 @@ namespace jm
 		void draw()
 		{
 			beginTransformation();
-			translate(center.x, center.y);
-			drawFilledBox(Colors::green, 0.25f, 0.1f);
-			translate(-0.02f, 0.1f);
-			drawFilledBox(Colors::blue, 0.15f, 0.09f);
-			translate(0.15f, 0.0f);
-			drawFilledBox(Colors::red, 0.15f, 0.03f); // turret
+			{
+				translate(center.x, center.y);
+				drawFilledBox(Colors::green, 0.25f, 0.1f); // body
+				translate(-0.02f, 0.1f);
+				drawFilledBox(Colors::blue, 0.15f, 0.09f);
+				translate(0.15f, 0.0f);
+				drawFilledBox(Colors::red, 0.15f, 0.03f);  // turret
+			}
 			endTransformation();
 		}
 	};
@@ -67,15 +69,7 @@ namespace jm
 			// shoot a cannon ball
 			if (isKeyPressedAndReleased(GLFW_KEY_SPACE))
 			{
-				if (bullet != nullptr) delete bullet;
-				bullet = new MyBullet;
-				bullet->center = tank.center;
-				bullet->center.x += 0.2f;
-				bullet->center.y += 0.1f;
-				bullet->velocity = vec3(2.0f, 0.0f, 0.0f);
 			}
-
-			if (bullet != nullptr) bullet->update(getTimeStep());
 
 			// rendering
 			tank.draw();
