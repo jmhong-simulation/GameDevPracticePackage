@@ -60,16 +60,30 @@ namespace jm
 			: Game2D("This is my digital canvas!", 1024, 768, false, 2)
 		{}
 
+		~TankExample()
+		{
+			if(bullet != nullptr) delete bullet;
+		}
+
 		void update() override
 		{
 			// move tank
 			if (isKeyPressed(GLFW_KEY_LEFT))	tank.center.x -= 0.5f * getTimeStep();
-			//TODO: other directions
+			if (isKeyPressed(GLFW_KEY_RIGHT))	tank.center.x += 0.5f * getTimeStep();
+			if (isKeyPressed(GLFW_KEY_UP))		tank.center.y += 0.5f * getTimeStep();
+			if (isKeyPressed(GLFW_KEY_DOWN))	tank.center.y -= 0.5f * getTimeStep();
 
 			// shoot a cannon ball
 			if (isKeyPressedAndReleased(GLFW_KEY_SPACE))
 			{
+				bullet = new MyBullet;
+				bullet->center = tank.center;
+				bullet->center.x += 0.2f;
+				bullet->center.y += 0.1f;
+				bullet->velocity = vec2(2.0f, 0.0f);
 			}
+
+			if (bullet != nullptr) bullet->update(getTimeStep());
 
 			// rendering
 			tank.draw();
