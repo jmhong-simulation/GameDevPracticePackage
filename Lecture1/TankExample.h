@@ -8,7 +8,7 @@ namespace jm
 	{
 	public:
 		vec3 center = vec3(0.0f, 0.0f, 0.0f);
-		vec3 direction = vec3(1.0f, 0.0f, 0.0f);
+		//vec3 direction = vec3(1.0f, 0.0f, 0.0f);
 
 		void draw()
 		{
