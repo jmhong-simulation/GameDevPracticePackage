@@ -7,19 +7,19 @@ namespace jm
 	class MyTank
 	{
 	public:
-		vec3 center = vec3(0.0f, 0.0f, 0.0f);
-		//vec3 direction = vec3(1.0f, 0.0f, 0.0f);
+		vec2 center = vec2(0.0f, 0.0f);
+		//vec2 direction = vec2(1.0f, 0.0f, 0.0f);
 
 		void draw()
 		{
 			beginTransformation();
 			{
-				translate(center.x, center.y);
+				translate(center);
 				drawFilledBox(Colors::green, 0.25f, 0.1f); // body
 				translate(-0.02f, 0.1f);
-				drawFilledBox(Colors::blue, 0.15f, 0.09f);
+				drawFilledBox(Colors::blue, 0.15f, 0.09f); // turret
 				translate(0.15f, 0.0f);
-				drawFilledBox(Colors::red, 0.15f, 0.03f);  // turret
+				drawFilledBox(Colors::red, 0.15f, 0.03f);  // barrel
 			}
 			endTransformation();
 		}
@@ -28,13 +28,13 @@ namespace jm
 	class MyBullet
 	{
 	public:
-		vec3 center = vec3(0.0f, 0.0f, 0.0f);
-		vec3 velocity = vec3(0.0f, 0.0f, 0.0f);
+		vec2 center = vec2(0.0f, 0.0f);
+		vec2 velocity = vec2(0.0f, 0.0f);
 
 		void draw()
 		{
 			beginTransformation();
-			translate(center.x, center.y);
+			translate(center);
 			drawFilledRegularConvexPolygon(Colors::yellow, 0.02f, 8);
 			drawWiredRegularConvexPolygon(Colors::gray, 0.02f, 8);
 			endTransformation();
