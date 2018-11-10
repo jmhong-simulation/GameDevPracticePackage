@@ -30,10 +30,11 @@ namespace jm
 
 		Timer timer;
 
-		float spf = 1.0f / 60.0f;		// second(s) per frame
+		float spf = 1.0f / 60.0f;		 // second(s) per frame
 
 		// control options
-		std::map<int, bool> key_status; // key_id, is_pressed
+		std::map<int, bool> key_status;  // key_id, is_pressed
+		std::map<int, bool> mbtn_status; // mouse_button_id, is_pressed
 		bool draw_grid = false;
 
 	public:
@@ -53,6 +54,10 @@ namespace jm
 		bool isKeyPressed(const int& key);
 		bool isKeyReleased(const int & key);
 		bool isKeyPressedAndReleased(const int& key);
+
+		bool isMouseButtonPressed(const int& mbtn);
+		bool isMouseButtonReleased(const int& mbtn);
+		bool isMouseButtonPressedAndReleased(const int& key);
 
 		float getTimeStep();
 

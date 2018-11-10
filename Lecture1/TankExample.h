@@ -47,8 +47,6 @@ namespace jm
 	class TankExample : public Game2D
 	{
 	public:
-		float time = 0.0;
-
 		MyTank tank;
 
 		MyBullet *bullet = nullptr;
@@ -64,9 +62,7 @@ namespace jm
 		{
 			// move tank
 			if (isKeyPressed(GLFW_KEY_LEFT))	tank.center.x -= 0.01f;
-			if (isKeyPressed(GLFW_KEY_RIGHT))	tank.center.x += 0.01f;
-			if (isKeyPressed(GLFW_KEY_UP))		tank.center.y += 0.01f;
-			if (isKeyPressed(GLFW_KEY_DOWN))	tank.center.y -= 0.01f;
+			//TODO: other directions
 
 			// shoot a cannon ball
 			if (isKeyPressedAndReleased(GLFW_KEY_SPACE))
@@ -79,13 +75,11 @@ namespace jm
 				bullet->velocity = vec3(2.0f, 0.0f, 0.0f);
 			}
 
-			if (bullet != nullptr) bullet->update(1 / 60.0f);
+			if (bullet != nullptr) bullet->update(getTimeStep());
 
 			// rendering
 			tank.draw();
 			if (bullet != nullptr) bullet->draw();
-
-			time += getTimeStep();
 		}
 	};
 }

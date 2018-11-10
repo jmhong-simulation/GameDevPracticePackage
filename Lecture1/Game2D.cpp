@@ -139,6 +139,51 @@ namespace jm
 		}
 	}
 
+	bool Game2D::isMouseButtonPressed(const int & key)
+	{
+		if (mbtn_status.count(key) <= 0) mbtn_status[key] = false;
+
+		if (glfwGetMouseButton(glfw_window, key) == GLFW_PRESS)
+			mbtn_status[key] = true;
+		else
+			mbtn_status[key] = false;
+
+		return mbtn_status[key];
+	}
+
+	bool Game2D::isMouseButtonReleased(const int & key)
+	{
+		if (mbtn_status.count(key) <= 0) mbtn_status[key] = false;
+
+		if (glfwGetMouseButton(glfw_window, key) == GLFW_RELEASE)
+			mbtn_status[key] = false;
+		else
+			mbtn_status[key] = true;
+
+		return mbtn_status[key];
+	}
+
+	bool Game2D::isMouseButtonPressedAndReleased(const int & key)
+	{
+		if (mbtn_status.count(key) <= 0) mbtn_status[key] = false; // register key to map
+
+		if (glfwGetMouseButton(glfw_window, key) == GLFW_RELEASE)
+		{
+			if (mbtn_status[key] == true) {
+				mbtn_status[key] = false;
+				return true;
+			}
+			else {
+				mbtn_status[key] = false;
+				return false;
+			}
+		}
+		else {
+			mbtn_status[key] = true;
+			return false;
+		}
+	}
+
 	void Game2D::run()
 	{
 		if (glfw_window == nullptr)
