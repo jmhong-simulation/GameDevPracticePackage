@@ -24,6 +24,9 @@
 
 홍정모 드림.
 
-홍보 영상 링크 https://www.youtube.com/watch?v=v-yZZfLNnLE
+[유튜브 재생목록 링크](https://www.youtube.com/playlist?list=PLNfg4W25TapyIQ2Qq2z2ewmNwV64vNtTH)
+[따라하며 배우는 C++ 인프런 링크](https://www.inflearn.com/course/following-c-plus/)
+['게임 만들기 연습문제 패키지' 안내글 링크](https://blog.naver.com/atelierjpro/221393890372)
+
 
 
