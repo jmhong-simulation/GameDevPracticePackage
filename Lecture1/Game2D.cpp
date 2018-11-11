@@ -165,24 +165,49 @@ namespace jm
 		return mbtn_status[key];
 	}
 
-	bool Game2D::isMouseButtonPressedAndReleased(const int & key)
+	bool Game2D::isMouseButtonPressedAndReleased(const int & mbtn)
 	{
-		if (mbtn_status.count(key) <= 0) mbtn_status[key] = false; // register key to map
+		if (mbtn_status.count(mbtn) <= 0) mbtn_status[mbtn] = false; // register key to map
 
-		if (glfwGetMouseButton(glfw_window, key) == GLFW_RELEASE)
+		if (glfwGetMouseButton(glfw_window, mbtn) == GLFW_RELEASE)
 		{
-			if (mbtn_status[key] == true) {
-				mbtn_status[key] = false;
+			if (mbtn_status[mbtn] == true) {
+				mbtn_status[mbtn] = false;
 				return true;
 			}
 			else {
-				mbtn_status[key] = false;
+				mbtn_status[mbtn] = false;
 				return false;
 			}
 		}
 		else {
-			mbtn_status[key] = true;
+			mbtn_status[mbtn] = true;
 			return false;
+		}
+	}
+
+	vec2 Game2D::getCursorPos(const bool& window_coordinates)
+	{
+		double x_pos, y_pos;
+		glfwGetCursorPos(glfw_window, &x_pos, &y_pos);
+		// 0 <= x_pos < width, 0 <= y_pos < height
+		// Note that (0, 0) is left up corner. 
+		// This is different from our screen coordinates.
+
+		if (!window_coordinates)
+		{
+			// upside down y direction
+			y_pos = height - y_pos;
+
+			// rescale and translate zero to center
+			y_pos = y_pos / static_cast<double>(height) * 2.0f - 1.0f;
+			x_pos = x_pos / height * 2.0f - 1.0f * width / height;
+
+			return vec2(static_cast<float>(x_pos), static_cast<float>(y_pos));
+		}
+		else
+		{
+			return vec2(static_cast<float>(x_pos), static_cast<float>(y_pos));
 		}
 	}
 

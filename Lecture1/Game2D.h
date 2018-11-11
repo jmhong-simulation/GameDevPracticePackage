@@ -57,7 +57,9 @@ namespace jm
 
 		bool isMouseButtonPressed(const int& mbtn);
 		bool isMouseButtonReleased(const int& mbtn);
-		bool isMouseButtonPressedAndReleased(const int& key);
+		bool isMouseButtonPressedAndReleased(const int& mbtn);
+
+		vec2 getCursorPos(const bool& window_coordinates = false);
 
 		float getTimeStep();
 
