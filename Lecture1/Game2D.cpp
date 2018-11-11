@@ -43,10 +43,12 @@ namespace jm
 			width = display_w;
 			height = display_h;
 
-			if (num_monitors == 3) // find center display
-				glfwSetWindowPos(glfw_window, (mode->width - display_w) / 2 - mode->width, (mode->height - display_h) / 2);
-			else
-				glfwSetWindowPos(glfw_window, (mode->width - display_w) / 2, (mode->height - display_h) / 2);
+			//if (num_monitors == 3) // find center display
+			//	glfwSetWindowPos(glfw_window, (mode->width - display_w) / 2 - mode->width, (mode->height - display_h) / 2);
+			//else
+			//	glfwSetWindowPos(glfw_window, (mode->width - display_w) / 2, (mode->height - display_h) / 2);
+
+			glfwSetWindowPos(glfw_window, (mode->width - display_w) / 2, (mode->height - display_h) / 2);
 		}
 		else {
 			if (display_ix < num_monitors) // display_ix is valid
