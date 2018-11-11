@@ -190,17 +190,16 @@ namespace jm
 	{
 		double x_pos, y_pos;
 		glfwGetCursorPos(glfw_window, &x_pos, &y_pos);
-		// 0 <= x_pos < width, 0 <= y_pos < height
 		// Note that (0, 0) is left up corner. 
 		// This is different from our screen coordinates.
 
 		if (!window_coordinates)
 		{
 			// upside down y direction
-			y_pos = height - y_pos;
+			y_pos = height - y_pos; //  +1 ?
 
 			// rescale and translate zero to center
-			y_pos = y_pos / static_cast<double>(height) * 2.0f - 1.0f;
+			y_pos = y_pos / height * 2.0f - 1.0f;
 			x_pos = x_pos / height * 2.0f - 1.0f * width / height;
 
 			return vec2(static_cast<float>(x_pos), static_cast<float>(y_pos));
