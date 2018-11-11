@@ -186,21 +186,26 @@ namespace jm
 		}
 	}
 
-	vec2 Game2D::getCursorPos(const bool& window_coordinates)
+	vec2 Game2D::getCursorPos(const bool& screen_coordinates)
 	{
 		double x_pos, y_pos;
 		glfwGetCursorPos(glfw_window, &x_pos, &y_pos);
 		// Note that (0, 0) is left up corner. 
 		// This is different from our screen coordinates.
+		// 0 <= x <= width - 1
+		// height - 1 >= y >= 0 
 
-		if (!window_coordinates)
+		if (screen_coordinates) // assumes width >= height
 		{
 			// upside down y direction
-			y_pos = height - y_pos; //  +1 ?
+			y_pos = height - y_pos - 1; // 0 <= y <= height - 1
 
 			// rescale and translate zero to center
-			y_pos = y_pos / height * 2.0f - 1.0f;
-			x_pos = x_pos / height * 2.0f - 1.0f * width / height;
+			y_pos = y_pos / (height - 1); //  0.0 <= y <= 1.0
+			y_pos = y_pos * 2.0;		  //  0.0 <= y <= 2.0
+			y_pos = y_pos - 1.0;		  // -1.0 <= y <= 1.0
+
+			x_pos = (x_pos / (width - 1) * 2.0 - 1.0) * width / height;
 
 			return vec2(static_cast<float>(x_pos), static_cast<float>(y_pos));
 		}
