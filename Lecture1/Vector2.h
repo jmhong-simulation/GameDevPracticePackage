@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cassert>
+#include <iostream>
 
 namespace jm
 {
@@ -92,6 +93,12 @@ namespace jm
 			assert(ix < 2);
 
 			return data[ix];
+		}
+
+		friend std::ostream & operator << (std::ostream & out, const Vector2<T> & vec)
+		{
+			out << vec.x << " " << vec.y;
+			return out;
 		}
 	};
 }
