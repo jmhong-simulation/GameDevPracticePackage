@@ -3,11 +3,14 @@
 #include <iostream>
 #include <random>
 #include <ctime>
+#include "Vector2.h"
 
 namespace jm
 {
 	class RandomNumberGenerator
 	{
+		using vec2 = Vector2<float>;
+
 	public:
 		std::mt19937 mersenne;
 
@@ -33,6 +36,11 @@ namespace jm
 		double getDouble(const double& min, const double& max)
 		{
 			return std::uniform_real_distribution<>(min, max)(mersenne);
+		}
+
+		vec2 getFloatVector(const float& min, const float& max)
+		{
+			return vec2(getFloat(min, max), getFloat(min, max));
 		}
 	};
 }

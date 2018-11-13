@@ -45,5 +45,8 @@
     <ClInclude Include="Engine\Vector3.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\RandomNumberGenerator.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

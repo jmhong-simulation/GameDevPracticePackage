@@ -28,6 +28,7 @@
     <ClInclude Include="Engine\Colors.h" />
     <ClInclude Include="Engine\DrawFunctions.h" />
     <ClInclude Include="Engine\Game2D.h" />
+    <ClInclude Include="Engine\RandomNumberGenerator.h" />
     <ClInclude Include="Engine\RGB.h" />
     <ClInclude Include="Engine\Timer.h" />
     <ClInclude Include="Engine\Vector2.h" />
