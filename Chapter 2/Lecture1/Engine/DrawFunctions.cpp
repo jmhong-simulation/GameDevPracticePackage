@@ -65,6 +65,26 @@ namespace jm
 		drawWiredRegularConvexPolygon(color, edge_length * 0.5f * sqrtf(2.0f), 90.0f, 3);
 	}
 
+	void drawWiredTriangle(const RGB& color, const vec2& v0, const vec2& v1, const vec2& v2)
+	{
+		glColor3fv(color.data);
+		glBegin(GL_LINE_LOOP);
+		glVertex2fv(v0.data);
+		glVertex2fv(v1.data);
+		glVertex2fv(v2.data);
+		glEnd();
+	}
+
+	void drawFilledTriangle(const RGB& color, const vec2& v0, const vec2& v1, const vec2& v2)
+	{
+		glColor3fv(color.data);
+		glBegin(GL_TRIANGLES);
+		glVertex2fv(v0.data);
+		glVertex2fv(v1.data);
+		glVertex2fv(v2.data);
+		glEnd();
+	}
+
 	void drawWiredSquare(const RGB & color, const float & edge_length)
 	{
 		drawWiredRegularConvexPolygon(color, edge_length * 0.5f * sqrtf(2.0f), 45.0f, 4);

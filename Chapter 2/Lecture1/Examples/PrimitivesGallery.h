@@ -63,7 +63,8 @@ namespace jm
 				drawWiredRegularConvexPolygon(Colors::gold, 0.18f, 0.0, 9);
 
 				translate(0.5f, 0.0f);
-				drawWiredRegularConvexPolygon(Colors::gold, 0.18f, 0.0, 11);
+				drawFilledTriangle(Colors::olive, { -0.15f, -0.15f }, { 0.15f, -0.15f }, { 0.1f, 0.15f });
+				drawWiredTriangle(Colors::black, { -0.15f, -0.15f }, { 0.15f, -0.15f }, { 0.1f, 0.15f });
 			}
 			endTransformation();
 

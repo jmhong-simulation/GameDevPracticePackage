@@ -18,6 +18,7 @@ namespace jm
 
 	void drawWiredBox(const RGB& color, const float& width, const float& height);
 	void drawWiredTriangle(const RGB& color, const float& edge_length);
+	void drawWiredTriangle(const RGB& color, const vec2& v0, const vec2& v1, const vec2& v2);
 	void drawWiredSquare(const RGB& color, const float& edge_length);
 	void drawWiredRegularConvexPolygon(const RGB& color, const float& radius, const float & start_theta = 0.0f, const int& num_segments = 100);
 	void drawWiredCircle(const RGB& color, const float& radius);
@@ -27,6 +28,7 @@ namespace jm
 	void drawFilledRegularConvexPolygon(const RGB& color, const float& radius, const float & start_theta = 0.0f, const int& num_segments = 100);
 	void drawFilledCircle(const RGB& color, const float& radius);
 	void drawFilledTriangle(const RGB& color, const float& edge_length);
+	void drawFilledTriangle(const RGB& color, const vec2& v0, const vec2& v1, const vec2& v2);
 	void drawFilledSquare(const RGB& color, const float& edge_length);
 	void drawFilledPentagon(const RGB& color, const float& radius);
 	void drawFilledStar(const RGB& color, const float& outer_radius, const float& inner_radius);
