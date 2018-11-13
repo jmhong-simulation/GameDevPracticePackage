@@ -84,7 +84,7 @@ namespace jm
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-		return *this; // chaining
+		return *this; // chaining (See TBC++ 8.7)
 	}
 
 	void Game2D::reportErrorAndExit(const std::string & function_name, const std::string & message)
