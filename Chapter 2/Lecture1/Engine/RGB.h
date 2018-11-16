@@ -9,6 +9,9 @@ namespace jm
 		using BASE = Vector3<float>;
 
 	public:
+		RGB()
+		{}
+
 		RGB(const float & fr, const float & fg, const float & fb)
 			: BASE(fr, fg, fb)
 		{}
