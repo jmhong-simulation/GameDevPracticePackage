@@ -11,6 +11,7 @@
     <ClCompile Include="Engine\Timer.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="House.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -48,5 +49,6 @@
     <ClInclude Include="Engine\RandomNumberGenerator.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="House.h" />
   </ItemGroup>
 </Project>
