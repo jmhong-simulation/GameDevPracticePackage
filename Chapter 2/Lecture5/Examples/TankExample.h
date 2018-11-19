@@ -1,14 +1,42 @@
 #pragma once
 
 #include "Game2D.h"
+#include <map>
 
 namespace jm
 {
-	class MyTank
+	class Actor
+	{
+	public:
+		virtual void moveUp(float dt) = 0;
+	};
+
+	class Command
+	{
+	public:
+		virtual ~Command() {}
+		virtual void execute(Actor& actor, float dt) = 0;
+	};
+
+	class UpCommand : public Command 
+	{
+	public:
+		virtual void execute(Actor& actor, float dt) override
+		{
+			actor.moveUp(dt);
+		}
+	};
+
+	class MyTank : public Actor
 	{
 	public:
 		vec2 center = vec2(0.0f, 0.0f);
 		//vec2 direction = vec2(1.0f, 0.0f, 0.0f);
+
+		void moveUp(float dt) override
+		{
+			center.y += 0.5f * dt;
+		}
 
 		void draw()
 		{
@@ -25,24 +53,26 @@ namespace jm
 		}
 	};
 
-	class MyBullet
+	class InputHandler
 	{
 	public:
-		vec2 center = vec2(0.0f, 0.0f);
-		vec2 velocity = vec2(0.0f, 0.0f);
+		Command * button_up = nullptr;
 
-		void draw()
+		//std::map<int, Command *> key_command_map;
+
+		InputHandler()
 		{
-			beginTransformation();
-			translate(center);
-			drawFilledRegularConvexPolygon(Colors::yellow, 0.02f, 8);
-			drawWiredRegularConvexPolygon(Colors::gray, 0.02f, 8);
-			endTransformation();
+			button_up = new UpCommand;
 		}
 
-		void update(const float& dt)
+		void handleInput(Game2D & game, Actor & actor, float dt)
 		{
-			center += velocity * dt;
+			if (game.isKeyPressed(GLFW_KEY_UP))  button_up->execute(actor, dt);
+
+			/*for (auto & m : key_command_map)
+			{
+				if (game.isKeyPressed(m.first)) m.second->execute(actor, dt);
+			}*/
 		}
 	};
 
@@ -51,43 +81,31 @@ namespace jm
 	public:
 		MyTank tank;
 
-		MyBullet *bullet = nullptr;
-		//TODO: allow multiple bullets
-		//TODO: delete bullets when they go out of the screen
+		InputHandler input_handler;
 
 	public:
 		TankExample()
 			: Game2D("This is my digital canvas!", 1024, 768, false, 2)
-		{}
+		{
+			//input_handler.key_command_map[GLFW_KEY_UP] = input_handler.button_up;
+		}
 
 		~TankExample()
 		{
-			if(bullet != nullptr) delete bullet;
 		}
 
 		void update() override
 		{
 			// move tank
-			if (isKeyPressed(GLFW_KEY_LEFT))	tank.center.x -= 0.5f * getTimeStep();
+			/*if (isKeyPressed(GLFW_KEY_LEFT))	tank.center.x -= 0.5f * getTimeStep();
 			if (isKeyPressed(GLFW_KEY_RIGHT))	tank.center.x += 0.5f * getTimeStep();
 			if (isKeyPressed(GLFW_KEY_UP))		tank.center.y += 0.5f * getTimeStep();
-			if (isKeyPressed(GLFW_KEY_DOWN))	tank.center.y -= 0.5f * getTimeStep();
+			if (isKeyPressed(GLFW_KEY_DOWN))	tank.center.y -= 0.5f * getTimeStep();*/
 
-			// shoot a cannon ball
-			if (isKeyPressedAndReleased(GLFW_KEY_SPACE))
-			{
-				bullet = new MyBullet;
-				bullet->center = tank.center;
-				bullet->center.x += 0.2f;
-				bullet->center.y += 0.1f;
-				bullet->velocity = vec2(2.0f, 0.0f);
-			}
-
-			if (bullet != nullptr) bullet->update(getTimeStep());
+			input_handler.handleInput(*this, tank, getTimeStep());
 
 			// rendering
 			tank.draw();
-			if (bullet != nullptr) bullet->draw();
 		}
 	};
 }
