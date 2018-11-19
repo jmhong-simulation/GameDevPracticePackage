@@ -26,7 +26,7 @@ namespace jm
 
 		void drawGeometry() const override
 		{
-			drawFilledBox(Colors::blue, this->width, this->height);
+			drawFilledBox(color, this->width, this->height);
 		}
 	};
 }
