@@ -87,7 +87,8 @@ namespace jm
 		TankExample()
 			: Game2D("This is my digital canvas!", 1024, 768, false, 2)
 		{
-			//input_handler.key_command_map[GLFW_KEY_UP] = input_handler.button_up;
+			//key mapping
+			//input_handler.key_command_map[GLFW_KEY_UP] = new UpCommand;
 		}
 
 		~TankExample()
