@@ -56,7 +56,6 @@ namespace jm
 				beginTransformation();
 				{
 					translate(pos);
-					//drawWiredTriangle(Colors::black, size);
 					drawFilledTriangle(color, size);
 				}
 				endTransformation();

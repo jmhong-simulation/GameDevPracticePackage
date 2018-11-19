@@ -27,8 +27,6 @@ namespace jm
 
 		void drawGeometry() const override
 		{
-			setLineWidth(3);
-			drawWiredTriangle(Colors::black, size);
 			drawFilledTriangle(color, size);
 		}
 	};
