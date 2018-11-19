@@ -40,6 +40,7 @@
     <ClInclude Include="Circle.h" />
     <ClInclude Include="GeometricObject.h" />
     <ClInclude Include="Triangle.h" />
+    <ClInclude Include="GeometricObject_TEMP.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\DrawFunctions.cpp">
