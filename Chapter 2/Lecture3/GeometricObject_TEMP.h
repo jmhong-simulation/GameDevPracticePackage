@@ -4,15 +4,16 @@
 
 namespace jm
 {
-	// this class shows what happens if you do not use OOP well
+	// this class shows what happens if you do not use OOP properly
 	class GeometricObject_TEMP
 	{
 	public:
 		enum TYPE
 		{
-			TRIANGLE, CIRCLE, BOX
+			TRIANGLE, CIRCLE, BOX, // add more types
 		} type;
 
+		// common properties
 		vec2 pos;
 		RGB  color;
 
