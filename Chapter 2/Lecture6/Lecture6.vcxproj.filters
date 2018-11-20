@@ -44,6 +44,9 @@
     <ClInclude Include="Examples\TankExample.h">
       <Filter>Examples</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\SoundEngine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\DrawFunctions.cpp">
@@ -57,5 +60,8 @@
     </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="GeometricObject.cpp" />
+    <ClCompile Include="Engine\SoundEngine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

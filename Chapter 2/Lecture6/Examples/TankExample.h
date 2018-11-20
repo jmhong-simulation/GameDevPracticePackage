@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game2D.h"
+#include "SoundEngine.h"
 
 namespace jm
 {
@@ -55,10 +56,16 @@ namespace jm
 		//TODO: allow multiple bullets
 		//TODO: delete bullets when they go out of the screen
 
+		SoundEngine sound_engine;
+
 	public:
 		TankExample()
 			: Game2D("This is my digital canvas!", 1024, 768, false, 2)
-		{}
+		{
+			sound_engine.createSound("wave.mp3", "background_music", true);
+
+			sound_engine.playSound("background_music");
+		}
 
 		~TankExample()
 		{
