@@ -47,6 +47,12 @@
     <ClInclude Include="Engine\SoundEngine.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Examples\MyBullet.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\MyTank.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\DrawFunctions.cpp">
@@ -62,6 +68,12 @@
     <ClCompile Include="GeometricObject.cpp" />
     <ClCompile Include="Engine\SoundEngine.cpp">
       <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\MyTank.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\MyBullet.cpp">
+      <Filter>Examples</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

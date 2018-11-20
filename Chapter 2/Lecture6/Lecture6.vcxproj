@@ -30,6 +30,8 @@
     <ClInclude Include="Engine\Timer.h" />
     <ClInclude Include="Engine\Vector2.h" />
     <ClInclude Include="Engine\Vector3.h" />
+    <ClInclude Include="Examples\MyBullet.h" />
+    <ClInclude Include="Examples\MyTank.h" />
     <ClInclude Include="Examples\PrimitivesGallery.h" />
     <ClInclude Include="Examples\TankExample.h" />
     <ClInclude Include="GeometricObject.h" />
@@ -41,6 +43,8 @@
     <ClCompile Include="Engine\Game2D.cpp" />
     <ClCompile Include="Engine\SoundEngine.cpp" />
     <ClCompile Include="Engine\Timer.cpp" />
+    <ClCompile Include="Examples\MyBullet.cpp" />
+    <ClCompile Include="Examples\MyTank.cpp" />
     <ClCompile Include="GeometricObject.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

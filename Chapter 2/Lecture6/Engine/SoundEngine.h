@@ -11,8 +11,9 @@ namespace jm
 	{
 	public:
 		FMOD::System  *system = nullptr;
-		FMOD::Channel *channel = nullptr;
+		//FMOD::Channel *channel = nullptr;
 		std::map<std::string, FMOD::Sound*> sound_map;
+		std::map<FMOD::Sound*, FMOD::Channel*> channel_map;// not efficient
 		
 		FMOD_RESULT   result;
 		unsigned int  version;
@@ -40,8 +41,6 @@ namespace jm
 				cout << "system->init() fail" << endl;
 				exit(-1);
 			}
-
-			
 		}
 
 		~SoundEngine()
@@ -72,8 +71,37 @@ namespace jm
 			}
 
 			const auto & sound_ptr = sound_map[sound_name];
+			auto & channel_ptr = channel_map[sound_ptr];
 
-			result = system->playSound(sound_ptr, 0, false, &channel);
+			bool is_playing = false;
+			result = channel_ptr->isPlaying(&is_playing);
+
+			if (is_playing) return; // don't play if this is already playing
+
+			result = system->playSound(sound_ptr, 0, false, &channel_ptr);
+
+			if (result != FMOD_OK) {
+				std::cout << "system->playSound() fail" << std::endl;
+				exit(-1);
+			}
+		}
+
+		void stopSound(const std::string & sound_name)
+		{
+			if (sound_map.count(sound_name) <= 0) {
+				std::cout << sound_name << " isn't initialized." << std::endl;
+				exit(-1);
+			}
+
+			const auto & sound_ptr = sound_map[sound_name];
+			auto & channel_ptr = channel_map[sound_ptr];
+
+			bool is_playing = false;
+			result = channel_ptr->isPlaying(&is_playing);
+
+			if (is_playing == false) return; // don't stop playing if this is not playing
+
+			result = channel_ptr->stop();
 
 			if (result != FMOD_OK) {
 				std::cout << "system->playSound() fail" << std::endl;

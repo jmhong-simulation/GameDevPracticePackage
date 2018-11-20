@@ -1,52 +1,12 @@
 #pragma once
 
 #include "Game2D.h"
+#include "MyBullet.h"
+#include "MyTank.h"
 #include "SoundEngine.h"
 
 namespace jm
 {
-	class MyTank
-	{
-	public:
-		vec2 center = vec2(0.0f, 0.0f);
-		//vec2 direction = vec2(1.0f, 0.0f, 0.0f);
-
-		void draw()
-		{
-			beginTransformation();
-			{
-				translate(center);
-				drawFilledBox(Colors::green, 0.25f, 0.1f); // body
-				translate(-0.02f, 0.1f);
-				drawFilledBox(Colors::blue, 0.15f, 0.09f); // turret
-				translate(0.15f, 0.0f);
-				drawFilledBox(Colors::red, 0.15f, 0.03f);  // barrel
-			}
-			endTransformation();
-		}
-	};
-
-	class MyBullet
-	{
-	public:
-		vec2 center = vec2(0.0f, 0.0f);
-		vec2 velocity = vec2(0.0f, 0.0f);
-
-		void draw()
-		{
-			beginTransformation();
-			translate(center);
-			drawFilledRegularConvexPolygon(Colors::yellow, 0.02f, 8);
-			drawWiredRegularConvexPolygon(Colors::gray, 0.02f, 8);
-			endTransformation();
-		}
-
-		void update(const float& dt)
-		{
-			center += velocity * dt;
-		}
-	};
-
 	class TankExample : public Game2D
 	{
 	public:
@@ -62,7 +22,9 @@ namespace jm
 		TankExample()
 			: Game2D("This is my digital canvas!", 1024, 768, false, 2)
 		{
-			sound_engine.createSound("wave.mp3", "background_music", true);
+			sound_engine.createSound("drumloop.wav", "background_music", true);
+			sound_engine.createSound("truck_idle_off_02.wav", "tank_move", true);
+			sound_engine.createSound("cannon1.wav", "cannon", false);
 
 			sound_engine.playSound("background_music");
 		}
@@ -75,7 +37,15 @@ namespace jm
 		void update() override
 		{
 			// move tank
-			if (isKeyPressed(GLFW_KEY_LEFT))	tank.center.x -= 0.5f * getTimeStep();
+			if (isKeyPressed(GLFW_KEY_LEFT)) {
+				tank.center.x -= 0.5f * getTimeStep();
+				sound_engine.playSound("tank_move");
+			}
+			else
+			{
+				sound_engine.stopSound("tank_move");
+			}
+
 			if (isKeyPressed(GLFW_KEY_RIGHT))	tank.center.x += 0.5f * getTimeStep();
 			if (isKeyPressed(GLFW_KEY_UP))		tank.center.y += 0.5f * getTimeStep();
 			if (isKeyPressed(GLFW_KEY_DOWN))	tank.center.y -= 0.5f * getTimeStep();
@@ -88,6 +58,8 @@ namespace jm
 				bullet->center.x += 0.2f;
 				bullet->center.y += 0.1f;
 				bullet->velocity = vec2(2.0f, 0.0f);
+
+				sound_engine.playSound("cannon");
 			}
 
 			if (bullet != nullptr) bullet->update(getTimeStep());
