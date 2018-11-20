@@ -7,6 +7,7 @@
 
 namespace jm
 {
+	//Note: This example implementation of sound engine is inefficient.
 	class SoundEngine
 	{
 	private:
