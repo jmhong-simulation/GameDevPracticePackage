@@ -27,6 +27,7 @@
     <ClInclude Include="Engine\RandomNumberGenerator.h" />
     <ClInclude Include="Engine\RGB.h" />
     <ClInclude Include="Engine\SoundEngine.h" />
+    <ClInclude Include="Engine\SoundEngine_Singleton.h" />
     <ClInclude Include="Engine\Timer.h" />
     <ClInclude Include="Engine\Vector2.h" />
     <ClInclude Include="Engine\Vector3.h" />
@@ -42,6 +43,7 @@
     <ClCompile Include="Engine\DrawFunctions.cpp" />
     <ClCompile Include="Engine\Game2D.cpp" />
     <ClCompile Include="Engine\SoundEngine.cpp" />
+    <ClCompile Include="Engine\SoundEngine_Singleton.cpp" />
     <ClCompile Include="Engine\Timer.cpp" />
     <ClCompile Include="Examples\MyBullet.cpp" />
     <ClCompile Include="Examples\MyTank.cpp" />

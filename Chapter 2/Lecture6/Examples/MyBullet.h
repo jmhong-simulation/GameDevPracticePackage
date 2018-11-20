@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game2D.h"
+//#include "SoundEngine_Singleton.h"
 
 namespace jm
 {
@@ -11,10 +12,14 @@ namespace jm
 		vec2 velocity = vec2(0.0f, 0.0f);
 
 		MyBullet()
-		{}
+		{
+			//SoundEngine_Singleton::getInstance()->playSound("missile");
+		}
 
 		~MyBullet()
-		{}
+		{
+			//SoundEngine_Singleton::getInstance()->stopSound("missile");
+		}
 
 		void draw()
 		{

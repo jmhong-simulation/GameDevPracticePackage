@@ -4,6 +4,7 @@
 #include "MyBullet.h"
 #include "MyTank.h"
 #include "SoundEngine.h"
+//#include "SoundEngine_Singleton.h"
 
 namespace jm
 {
@@ -22,6 +23,8 @@ namespace jm
 		TankExample()
 			: Game2D("This is my digital canvas!", 1024, 768, false, 2)
 		{
+			//auto & sound_engine = *SoundEngine_Singleton::getInstance();
+
 			sound_engine.createSound("drumloop.wav", "background_music", true);
 			sound_engine.createSound("truck_idle_off_02.wav", "tank_move", true);
 			sound_engine.createSound("cannon1.wav", "cannon", false);
@@ -37,6 +40,8 @@ namespace jm
 
 		void update() override
 		{
+			//auto & sound_engine = *SoundEngine_Singleton::getInstance();
+
 			// move tank
 			bool is_moving = false;
 
@@ -68,6 +73,8 @@ namespace jm
 			// shoot a cannon ball
 			if (isKeyPressedAndReleased(GLFW_KEY_SPACE))
 			{
+				if (bullet != nullptr) delete bullet;
+
 				bullet = new MyBullet;
 				bullet->center = tank.center;
 				bullet->center.x += 0.2f;

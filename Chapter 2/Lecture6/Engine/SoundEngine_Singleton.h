@@ -7,7 +7,7 @@
 
 namespace jm
 {
-	class SoundEngine
+	class SoundEngine_Singleton
 	{
 	private:
 		FMOD::System  *system = nullptr;
@@ -19,8 +19,13 @@ namespace jm
 		unsigned int  version;
 		void          *extradriverdata = nullptr;
 
+		static SoundEngine_Singleton * instance;
+
 	public:
-		SoundEngine()
+		static SoundEngine_Singleton * getInstance();
+
+	private:
+		SoundEngine_Singleton()
 		{
 			using namespace std;
 
@@ -45,7 +50,7 @@ namespace jm
 		}
 
 	public:
-		~SoundEngine()
+		~SoundEngine_Singleton()
 		{
 			system->release();
 		}
