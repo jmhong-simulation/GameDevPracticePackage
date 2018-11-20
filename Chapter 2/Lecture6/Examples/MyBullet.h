@@ -10,6 +10,12 @@ namespace jm
 		vec2 center = vec2(0.0f, 0.0f);
 		vec2 velocity = vec2(0.0f, 0.0f);
 
+		MyBullet()
+		{}
+
+		~MyBullet()
+		{}
+
 		void draw()
 		{
 			beginTransformation();

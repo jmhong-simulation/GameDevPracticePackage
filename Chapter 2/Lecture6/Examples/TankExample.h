@@ -25,6 +25,7 @@ namespace jm
 			sound_engine.createSound("drumloop.wav", "background_music", true);
 			sound_engine.createSound("truck_idle_off_02.wav", "tank_move", true);
 			sound_engine.createSound("cannon1.wav", "cannon", false);
+			sound_engine.createSound("missile.mp3", "missile", false);
 
 			sound_engine.playSound("background_music");
 		}
@@ -74,7 +75,7 @@ namespace jm
 				bullet->velocity = vec2(2.0f, 0.0f);
 
 				sound_engine.stopSound("cannon");
-				sound_engine.playSound("cannon");
+				sound_engine.playSound("cannon");				
 			}
 
 			if (bullet != nullptr) bullet->update(getTimeStep());

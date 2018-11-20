@@ -45,6 +45,7 @@ namespace jm
 
 		~SoundEngine()
 		{
+			system->release();
 		}
 
 		void createSound(const std::string & filename, const std::string & sound_name, const bool & use_loop)
