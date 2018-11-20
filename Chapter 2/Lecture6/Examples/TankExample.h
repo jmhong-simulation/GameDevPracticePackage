@@ -37,18 +37,32 @@ namespace jm
 		void update() override
 		{
 			// move tank
+			bool is_moving = false;
+
 			if (isKeyPressed(GLFW_KEY_LEFT)) {
-				tank.center.x -= 0.5f * getTimeStep();
-				sound_engine.playSound("tank_move");
-			}
-			else
-			{
-				sound_engine.stopSound("tank_move");
+				tank.moveLeft(getTimeStep());
+				is_moving = true;
 			}
 
-			if (isKeyPressed(GLFW_KEY_RIGHT))	tank.center.x += 0.5f * getTimeStep();
-			if (isKeyPressed(GLFW_KEY_UP))		tank.center.y += 0.5f * getTimeStep();
-			if (isKeyPressed(GLFW_KEY_DOWN))	tank.center.y -= 0.5f * getTimeStep();
+			if (isKeyPressed(GLFW_KEY_RIGHT)) {
+				tank.moveRight(getTimeStep());
+				is_moving = true;
+			}
+
+			if (isKeyPressed(GLFW_KEY_UP)) {
+				tank.moveUp(getTimeStep());
+				is_moving = true;
+			}
+
+			if (isKeyPressed(GLFW_KEY_DOWN)) {
+				tank.moveDown(getTimeStep());
+				is_moving = true;
+			}
+
+			if(is_moving)
+				sound_engine.playSound("tank_move");
+			else
+				sound_engine.stopSound("tank_move");
 
 			// shoot a cannon ball
 			if (isKeyPressedAndReleased(GLFW_KEY_SPACE))
@@ -59,6 +73,7 @@ namespace jm
 				bullet->center.y += 0.1f;
 				bullet->velocity = vec2(2.0f, 0.0f);
 
+				sound_engine.stopSound("cannon");
 				sound_engine.playSound("cannon");
 			}
 

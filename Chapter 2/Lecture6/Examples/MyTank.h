@@ -23,6 +23,26 @@ namespace jm
 			}
 			endTransformation();
 		}
+
+		void moveLeft(const float& dt)
+		{
+			center.x -= 0.5f * dt;
+		}
+
+		void moveRight(const float& dt)
+		{
+			center.x += 0.5f * dt;
+		}
+
+		void moveUp(const float& dt)
+		{
+			center.y += 0.5f * dt;
+		}
+
+		void moveDown(const float& dt)
+		{
+			center.y -= 0.5f * dt;
+		}
 	};
 
 }
