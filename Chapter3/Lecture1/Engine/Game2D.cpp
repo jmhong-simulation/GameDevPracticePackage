@@ -220,6 +220,8 @@ namespace jm
 		if (glfw_window == nullptr)
 			init("This is my digital canvas!", 1280, 960, false); // initialize with default setting
 
+		timer.start();
+
 		while (!glfwWindowShouldClose(glfw_window))// main loop
 		{
 			if (isKeyPressed(GLFW_KEY_ESCAPE)) {
@@ -227,7 +229,7 @@ namespace jm
 				break;
 			}
 
-			timer.start();
+
 
 			// pre draw
 			glfwMakeContextCurrent(glfw_window);
@@ -248,19 +250,21 @@ namespace jm
 			//glfwSetInputMode(glfw_window, GLFW_STICKY_KEYS, GLFW_FALSE); // not working 
 			glfwPollEvents();
 
-			//const double dt = timer.stopAndGetElapsedMilli();
+			const double dt = timer.stopAndGetElapsedMilli();
 
 			//Debugging
 			//std::cout << dt << std::endl;
 
-			//if (dt < spf) // to prevent too high fps
-			//{
-			//	const auto time_to_sleep = static_cast<int>((spf - dt) * 1000.0f);
-			//	std::this_thread::sleep_for(std::chrono::milliseconds(time_to_sleep));
-			//	
-			//	//Debugging
-			//	//std::cout << "sleep " << time_to_sleep << std::endl;
-			//}
+			if (dt < spf) // to prevent too high fps
+			{
+				const auto time_to_sleep = static_cast<int>((spf - dt) * 1000.0f);
+				std::this_thread::sleep_for(std::chrono::milliseconds(time_to_sleep));
+				
+				//Debugging
+				//std::cout << "sleep " << time_to_sleep << std::endl;
+			}
+
+			timer.start();
 		}
 
 		glfwTerminate();
