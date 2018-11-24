@@ -28,7 +28,7 @@ namespace jm
 		{
 		}
 
-		T dotProduct(const Vector2<T>& v)
+		T getDotProduct(const Vector2<T>& v) const
 		{
 			return x * v.x + y * v.y;
 		}
