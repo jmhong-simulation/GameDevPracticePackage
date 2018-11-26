@@ -238,10 +238,10 @@ namespace jm
 			glMatrixMode(GL_MODELVIEW);
 
 			glPushMatrix();
+			
+			update();	// the major worker function
 
 			drawGrid();
-
-			update();	// the major worker function
 
 			glPopMatrix();
 

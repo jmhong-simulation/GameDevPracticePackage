@@ -24,21 +24,21 @@
     <ClInclude Include="Engine\Colors.h" />
     <ClInclude Include="Engine\DrawFunctions.h" />
     <ClInclude Include="Engine\Game2D.h" />
+    <ClInclude Include="Engine\ImageObject.h" />
     <ClInclude Include="Engine\RandomNumberGenerator.h" />
     <ClInclude Include="Engine\RGB.h" />
     <ClInclude Include="Engine\Timer.h" />
     <ClInclude Include="Engine\Vector2.h" />
     <ClInclude Include="Engine\Vector3.h" />
     <ClInclude Include="Examples\PrimitivesGallery.h" />
-    <ClInclude Include="GeometricObject.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="Triangle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\DrawFunctions.cpp" />
     <ClCompile Include="Engine\Game2D.cpp" />
+    <ClCompile Include="Engine\ImageObject.cpp" />
     <ClCompile Include="Engine\Timer.cpp" />
-    <ClCompile Include="GeometricObject.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

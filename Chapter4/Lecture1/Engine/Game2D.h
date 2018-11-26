@@ -39,7 +39,9 @@ namespace jm
 
 	public:
 		Game2D()
-		{}
+		{
+			//init("This is my digital canvas!", 1280, 960, false);
+		}
 
 		Game2D(const std::string& _title, const int& _width, const int& _height,
 			const bool & use_full_screen = false, const int & display_ix = 0);

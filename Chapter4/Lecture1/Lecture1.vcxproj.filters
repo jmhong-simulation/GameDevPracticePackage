@@ -38,9 +38,11 @@
     </ClInclude>
     <ClInclude Include="Box.h" />
     <ClInclude Include="Circle.h" />
-    <ClInclude Include="GeometricObject.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="Star.h" />
+    <ClInclude Include="Engine\ImageObject.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\DrawFunctions.cpp">
@@ -53,6 +55,8 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="GeometricObject.cpp" />
+    <ClCompile Include="Engine\ImageObject.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
