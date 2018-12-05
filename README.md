@@ -2,7 +2,7 @@
 
 안녕하세요? 홍정모입니다.
 
-본 예제 코드는 ['게임 만들기 연습문제 패키지'](https://blog.naver.com/atelierjpro/221393890372)를 위해 개발되었습니다.
+본 예제 코드는 ['게임 만들기 연습문제 패키지'](https://www.inflearn.com/course/c-2/)를 위해 개발되었습니다.
 
 여러분들의 개인적인 학습을 위해서는 제한 없이 사용하실 수 있습니다.
 본 예제 코드를 기반으로 여러분들이 창작하신 작품을 친구들에게 자랑하기 위하여 코드를 공개하거나 
@@ -27,7 +27,7 @@
 
 [유튜브 재생목록 링크](https://www.youtube.com/playlist?list=PLNfg4W25TapyIQ2Qq2z2ewmNwV64vNtTH)
 
-[따라하며 배우는 C++ 인프런 링크](https://www.inflearn.com/course/following-c-plus/)
+[따라하며 배우는 C++ 인프런 링크](https://www.inflearn.com/course/c-2/)
 
 ['게임 만들기 연습문제 패키지' 안내글 링크](https://blog.naver.com/atelierjpro/221393890372)
 
