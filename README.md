@@ -1,4 +1,4 @@
-# GameDevPracticePackage
+# 홍정모의 게임 만들기 연습문제 패키지 실습 코드
 
 안녕하세요? 홍정모입니다.
 
